@@ -45,7 +45,7 @@ class First_gallery_m extends MY_Model
         $row = $this->config_id()
             ->select('COUNT(id) AS id')
             ->where('enabled', 1)
-            ->where('tipe', 0)
+            ->where('tipe', 1)
             ->get('gambar_gallery')
             ->row_array();
         $jml_data = $row['id'];
@@ -65,8 +65,8 @@ class First_gallery_m extends MY_Model
         // OPTIMIZE: benarkah butuh paging?
         $data = $this->config_id()
             ->where('enabled', 1)
-            ->where('tipe', 0)
-            ->order_by('urut')
+            ->where('tipe', 1)
+            ->order_by('urut', 'desc')
             ->get('gambar_gallery', $limit, $offset)
             ->result_array();
 
@@ -105,7 +105,7 @@ class First_gallery_m extends MY_Model
 
         $this->load->library('paging');
         $cfg['page']     = $p;
-        $cfg['per_page'] = 10;
+        $cfg['per_page'] = 9;
         $cfg['num_rows'] = $jml_data;
         $this->paging->init($cfg);
 
@@ -118,7 +118,7 @@ class First_gallery_m extends MY_Model
         return $this->config_id()
             ->where('enabled', 1)
             ->where('parrent', $gal)
-            ->order_by('urut')
+            ->order_by('urut', 'desc')
             ->get('gambar_gallery', $limit, $offset)
             ->result_array();
     }
