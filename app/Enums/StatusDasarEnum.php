@@ -55,7 +55,7 @@ class StatusDasarEnum extends BaseEnum
     {
         return [
             self::HIDUP       => 'Hidup',
-            self::MATI        => 'Mati',
+            self::MATI        => 'Meninggal Dunia',
             self::PINDAH      => 'Pindah',
             self::HILANG      => 'Hilang',
             self::PERGI       => 'Pergi',
