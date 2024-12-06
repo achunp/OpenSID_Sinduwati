@@ -1,3 +1,4 @@
+
 <div class="modal-body">
     @if ($main->foto)
         <div class="row">
@@ -9,14 +10,16 @@
                             @if ($foto[$i])
                                 <div class="item {{ jecho($i, 0, 'active') }}">
                                     <div class="image-container">
-                                        <img src="{{ is_file(LOKASI_PRODUK . $foto[$i]) ? to_base64(LOKASI_PRODUK . $foto[$i]) : to_base64('assets/images/404-image-not-found.jpg') }}" alt="Foto {{ $i + 1 }}">
+                                        <img class="rounded-md bg-cover" height="250px" style="border-radius:10px" src="{{ is_file(LOKASI_PRODUK . $foto[$i]) ? to_base64(LOKASI_PRODUK . $foto[$i]) : to_base64('assets/images/404-image-not-found.jpg') }}" alt="Foto {{ $i + 1 }}">
                                     </div>
-                                    <div class="carousel-caption">
+                                    <div class="text-center text-bold">
                                         Foto {{ $i == 0 ? 'Utama' : 'Tambahan' }}
                                     </div>
                                 </div>
+
                             @endif
                         @endfor
+                        
                     </div>
                     <a class="left carousel-control" href="#foto-produk" data-slide="prev">
                         <span class="fa fa-angle-left"></span>
@@ -31,17 +34,17 @@
     @endif
     <div class="form-group">
         <label class="control-label" for="pelapak">Nama Pelapak</label>
-        <input name="pelapak" class="form-control input-sm" type="text" value="{{ $main->pelapak }}" disabled />
+        <input name="pelapak" class="form-control input-md" type="text" value="{{ $main->pelapak }}" disabled />
     </div>
     <div class="form-group">
         <label class="control-label" for="nama">Nama Produk</label>
-        <input name="nama" class="form-control input-sm" type="text" value="{{ e($main->nama) }}" disabled />
+        <input name="nama" class="form-control input-md" type="text" value="{{ e($main->nama) }}" disabled />
     </div>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label" for="kategori">Kategori Produk</label>
-                <input name="kategori" class="form-control input-sm" type="text" value="{{ $main->kategori }}" disabled />
+                <input name="kategori" class="form-control input-md" type="text" value="{{ $main->kategori }}" disabled />
             </div>
         </div>
     </div>
@@ -50,15 +53,15 @@
             <div class="form-group">
                 <label class="control-label" for="harga">Harga Produk</label>
                 <div class="input-group">
-                    <span class="input-group-addon input-sm">Rp.</span>
-                    <input name="harga" class="form-control input-sm" type="text" style="text-align:right;" value="{{ str_replace('Rp.', '', rupiah($main->harga)) }}" disabled />
+                    <span class="input-group-addon input-md">Rp.</span>
+                    <input name="harga" class="form-control input-md" type="text" style="text-align:right;" value="{{ str_replace('Rp.', '', rupiah($main->harga)) }}" disabled />
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label class="control-label" for="satuan">Satuan Produk</label>
-                <input name="satuan" class="form-control input-sm" type="text" value="{{ $main->satuan }}" disabled />
+                <input name="satuan" class="form-control input-md" type="text" value="{{ $main->satuan }}" disabled />
             </div>
         </div>
         <div class="col-md-3">
@@ -66,13 +69,13 @@
                 <label class="control-label" for="potongan">Potongan Harga</label>
                 @if ($main->tipe_potongan == 1)
                     <div class="input-group">
-                        <input name="potongan" class="form-control input-sm" type="text" style="text-align:right;" value="{{ $main->potongan }}" disabled />
-                        <span class="input-group-addon input-sm">%</span>
+                        <input name="potongan" class="form-control input-md" type="text" style="text-align:right;" value="{{ $main->potongan }}" disabled />
+                        <span class="input-group-addon input-md">%</span>
                     </div>
                 @else
                     <div class="input-group">
-                        <span class="input-group-addon input-sm">Rp.</span>
-                        <input name="potongan" class="form-control input-sm" type="text" style="text-align:right;" value="{{ str_replace('Rp.', '', rupiah($main->potongan)) }}" disabled />
+                        <span class="input-group-addon input-md">Rp.</span>
+                        <input name="potongan" class="form-control input-md" type="text" style="text-align:right;" value="{{ str_replace('Rp.', '', rupiah($main->potongan)) }}" disabled />
                     </div>
                 @endif
             </div>
@@ -80,7 +83,11 @@
     </div>
     <div class="form-group">
         <label class="control-label" for="kode_desa">Deskripsi Produk</label>
-        <textarea name="deskripsi" class="form-control input-sm" rows="5" disabled>{{ e($main->deskripsi) }}</textarea>
+        <textarea name="deskripsi" class="form-control input-md" rows="5" disabled>{{ e($main->deskripsi) }}</textarea>
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="kode_desa">Alamat Website</label>
+        <textarea name="website" class="form-control input-md" rows="2" disabled>{{ e($main->website) }}</textarea>
     </div>
 </div>
 <div class="modal-footer">
