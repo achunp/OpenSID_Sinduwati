@@ -203,6 +203,7 @@
                     {
                         data: 'nama_ayah',
                         name: 'nama_ayah',
+                        className: 'text-left',
                         searchable: true,
                         orderable: false,
                         render: function(data, type, row) {
@@ -212,11 +213,9 @@
                     {
                         data: 'nama_ibu',
                         name: 'nama_ibu',
+                        className: 'text-left',
                         searchable: false,
-                        orderable: false,
-                        render: function(data, type, row) {
-                            return data.toUpperCase();
-                        }
+                        orderable: false
                     },
                     {
                         data: 'tgl_datang',
