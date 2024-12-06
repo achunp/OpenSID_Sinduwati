@@ -86,6 +86,9 @@
                         data: 'telegram',
                         name: 'telegram',
                         searchable: true,
+                            "render": function ( data, type, row, meta ) {
+                            return '<a style="color:#0458b8" href="https://wa.me/+62'+data+'" target="_blank"><i class="fa fa-whatsapp"></i>'+data+'</a>';
+                            },                        
                         orderable: true
                     },
                     {
