@@ -34,8 +34,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label" for="nama">Nama Produk</label>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="harga">Nama Produk</label>
                             <input
                                 name="nama"
                                 class="form-control input-sm strip_tags judul required"
@@ -43,13 +46,13 @@
                                 placeholder="Nama Produk"
                                 minlength="3"
                                 maxlength="100"
-                                value="{{ e($main->nama) }}"
+                                value="{{ strtoupper(e($main->nama)) }}"
                             />
-                        </div>
-                        <div class="row">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="kategori">Kategori Produk</label>
+                                    <label class="control-label" for="satuan">Kategori Produk</label>
                                     <select class="form-control input-sm select2 required" name="id_produk_kategori">
                                         <option value="">Pilih Kategori Produk</option>
                                         @foreach ($kategori as $kat)
@@ -58,7 +61,9 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
+                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -152,19 +157,23 @@
 
                         <div class="form-group">
                             <label class="control-label" for="kode_desa">Deskripsi Produk</label>
-                            <textarea name="deskripsi" class="form-control input-sm required" rows="5">{{ e($main->deskripsi) }}</textarea>
+                            <textarea name="deskripsi" style="font-size:14px" class="form-control input-sm required" rows="5">{{ e($main->deskripsi) }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="kode_desa">Alamat Website</label>
+                            <textarea name="website" style="font-size:14px" class="form-control input-sm" rows="2">{{ e($main->website) }}</textarea>
+                        </div>
                         </div>
                     </div>
                     <div class="box-footer">
                         <button type="reset" class="btn btn-social  btn-danger btn-sm"><i class="fa fa-times"></i> Batal</button>
                         <button type="submit" class="btn btn-social  btn-info btn-sm pull-right"><i class="fa fa-check"></i> Simpan</button>
-                    </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Foto Produk</h3>
+                        <h3 class="box-title">Foto Produk*</h3><small><code>*Wajib isi Foto Produk</code></small>
                         <div class="box-tools">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         </div>
@@ -201,6 +210,26 @@
             </div>
         </div>
     </form>
+	<div class='modal fade' id='mylapakform' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+		<div class='modal-dialog'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+						<h5 class='modal-title' id='myModalLabel' align="left"><b><i class='fa fa-bullhorn text-red'></i> Informasi</b></h5>
+				</div>
+				<div class='modal-body text-center'>
+					<h3>Foto Produk Wajib diisi.<br>Minimal 1 (satu) foto</h3>
+				</div>
+				<div class='modal-footer'>
+					<button type="button" class="btn btn-social btn-flat btn-danger btn-sm" data-dismiss="modal"><i class='fa fa-times'></i> Tutup</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 @endsection
 
 @push('scripts')
@@ -246,4 +275,9 @@
             }
         }
     </script>
+<script>
+$(document).ready(function(){       
+   $('#mylapakform').modal('show');
+    });     
+</script>
 @endpush
