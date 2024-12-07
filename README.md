@@ -1,6 +1,6 @@
 <h1 align="center">Selamat datang di OpenSID! 👋</h1>
 
-![readme-image](https://opendesa.id/wp-content/uploads/2023/10/0E4DD27A-8427-4BC8-834E-3D9B97E17B06-1024x605.jpeg)
+![readme-image](https://client.connectindo.com/clientarea/sitejet/service/10345/preview)
 
 ### 🤔 Apa itu OpenSID?
 
