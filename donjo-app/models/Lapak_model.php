@@ -47,6 +47,7 @@ class Lapak_model extends MY_Model
         6 => 'satuan',
         7 => 'potongan',
         8 => 'deskripsi',
+        9 => 'website',
     ];
     public const ORDER_ABLE_PELAPAK = [
         2 => 'pelapak',
@@ -76,6 +77,7 @@ class Lapak_model extends MY_Model
                 ->or_like('pr.satuan', $search)
                 ->or_like('pr.potongan', $search)
                 ->or_like('pr.deskripsi', $search)
+                ->or_like('pr.website', $search)
                 ->group_end();
         }
 
@@ -173,7 +175,7 @@ class Lapak_model extends MY_Model
 
         $data = [
             'id_pelapak'         => bilangan($post['id_pelapak']),
-            'nama'               => judul($post['nama']),
+            'nama'               => strtoupper(judul($post['nama'])),
             'id_produk_kategori' => alfanumerik_spasi($post['id_produk_kategori']),
             'harga'              => bilangan($post['harga']),
             'satuan'             => alfanumerik_spasi($post['satuan']),
@@ -181,6 +183,8 @@ class Lapak_model extends MY_Model
             'deskripsi'          => $this->security->xss_clean($post['deskripsi']),
             'foto'               => ($foto == []) ? null : json_encode($foto, JSON_THROW_ON_ERROR),
             'potongan'           => ($post['potongan'] == null) ? '0' : $post['potongan'],
+            'website'            => $this->security->xss_clean($post['website']),
+            
         ];
 
         if ($post['tipe_potongan'] == 1 && ! empty($post['persen'])) {
