@@ -142,9 +142,14 @@ class Produk extends BaseModel
 
     public function produkDelete($id = 0)
     {
-        $this->hapusFotoProduk('id', $id);
+        $this->hapusFotoProduk('foto', $id);
+            if ($foto = null) {
+                redirect_with('error', 'Produk tidak memiliki foto', 'lapak_admin/produk');
+            }
+            else {
+                return $this->where('id', $id)->delete('');
+            }
 
-        return $this->where('id', $id)->delete();
     }
 
     public function produkDeleteAll()
@@ -173,7 +178,7 @@ class Produk extends BaseModel
 
         $data = [
             'id_pelapak'         => bilangan($post['id_pelapak']),
-            'nama'               => judul($post['nama']),
+            'nama'               => strtoupper(judul($post['nama'])),
             'id_produk_kategori' => alfanumerik_spasi($post['id_produk_kategori']),
             'harga'              => bilangan($post['harga']),
             'satuan'             => alfanumerik_spasi($post['satuan']),
@@ -181,6 +186,7 @@ class Produk extends BaseModel
             'deskripsi'          => ci()->security->xss_clean($post['deskripsi']),
             'foto'               => ($foto == []) ? null : json_encode($foto, JSON_THROW_ON_ERROR),
             'potongan'           => ($post['potongan'] == null) ? '0' : $post['potongan'],
+            'website'            => ci()->security->xss_clean($post['website']),
         ];
 
         if ($post['tipe_potongan'] == 1 && ! empty($post['persen'])) {
